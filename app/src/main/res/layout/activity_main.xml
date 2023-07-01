@@ -76,14 +76,21 @@
 
     </HorizontalScrollView>
 
-    <androidx.appcompat.widget.SearchView
-        android:layout_margin="6dp"
-        android:padding="6dp"
+    <androidx.cardview.widget.CardView
+        android:layout_margin="14dp"
+        app:cardElevation="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="">
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            app:iconifiedByDefault="false"
+            android:layout_height="?attr/actionBarSize"
+            app:defaultQueryHint="Search News">
 
-    </androidx.appcompat.widget.SearchView>
+        </androidx.appcompat.widget.SearchView>
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_main"
