@@ -1,6 +1,7 @@
 package com.example.news_app.models;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.news_app.R;
 import com.example.news_app.onFetchDataListener;
@@ -21,8 +22,6 @@ public class RequestManager {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-
-
     public void getNewsHeadlines(onFetchDataListener listener,String category,String query){
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
         Call<NewsApiResponse> call = callNewsApi.callHeadlines("in",category,query,context.getString(R.string.api_key));
@@ -32,14 +31,20 @@ public class RequestManager {
             call.enqueue(new Callback<NewsApiResponse>() {
                 @Override
                 public void onResponse(Call<NewsApiResponse> call, Response<NewsApiResponse> response) {
+                    if(!response.isSuccessful()){
+                        Toast.makeText(context,"Error!",Toast.LENGTH_SHORT).show();
+                    }
 
+                    listener.onFetchData(response.body().getArticles(), response.message());
                 }
 
                 @Override
                 public void onFailure(Call<NewsApiResponse> call, Throwable t) {
-
+                    listener.onError("Request Failed!");
                 }
             });
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
