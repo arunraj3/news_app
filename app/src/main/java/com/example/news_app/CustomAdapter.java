@@ -2,11 +2,13 @@ package com.example.news_app;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.news_app.models.NewsApiResponse;
 import com.example.news_app.models.NewsHeadLines;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +22,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
     private Context context;
     private List<NewsHeadLines> headLines;
 
-    public CustomAdapter(Context context, List<NewsHeadLines> headLines) {
+    private SelectListener listener;
+    public CustomAdapter(Context context, List<NewsHeadLines> headLines, SelectListener listener) {
         this.context = context;
         this.headLines = headLines;
+        this.listener = listener;
     }
+
 
 
     @NonNull
@@ -40,6 +45,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
         if(headLines.get(position).getUrlToImage() != null){
             Picasso.get().load(headLines.get(position).getUrlToImage()).into(holder.news_img_headline);
         }
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.OnNewsClicked(headLines.get(position));
+            }
+        });
     }
 
     @Override

@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.strictmode.ServiceConnectionLeakedViolation;
 
 
 import com.example.news_app.models.NewsApiResponse;
@@ -14,7 +16,7 @@ import com.example.news_app.models.RequestManager;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SelectListener{
 
     RecyclerView recycler_view_main;
     CustomAdapter customAdapter;
@@ -40,18 +42,22 @@ public class MainActivity extends AppCompatActivity {
             showNews(list);
             progressDialog.dismiss();
         }
-
-        private void showNews(List<NewsHeadLines> list) {
-            recycler_view_main = (RecyclerView) findViewById(R.id.recycler_view_main);
-            recycler_view_main.setHasFixedSize(true);
-            recycler_view_main.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
-
-            customAdapter = new CustomAdapter(getApplicationContext(),list);
-            recycler_view_main.setAdapter(customAdapter);
-        }
         @Override
         public void onError(String message) {
 
         }
     };
+    private void showNews(List<NewsHeadLines> list) {
+        recycler_view_main = (RecyclerView) findViewById(R.id.recycler_view_main);
+        recycler_view_main.setHasFixedSize(true);
+        recycler_view_main.setLayoutManager(new GridLayoutManager(this,1));
+
+        customAdapter = new CustomAdapter(getApplicationContext(),list,this );
+        recycler_view_main.setAdapter(customAdapter);
+    }
+    @Override
+    public void OnNewsClicked(NewsHeadLines headlines) {
+        startActivity(new Intent(MainActivity.this,DetailsActivity.class)
+                .putExtra("data",headlines));
+    }
 }
