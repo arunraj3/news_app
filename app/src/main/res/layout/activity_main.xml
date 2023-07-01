@@ -7,6 +7,84 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="6dp"
+            android:layout_margin="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Button
+                android:id="@+id/business_tab"
+                android:text="Business"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/entertainment_tab"
+                android:text="Entertainment"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/general_tab"
+                android:text="General"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/health_tab"
+                android:text="Health"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/science_tab"
+                android:text="Science"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/sports_tab"
+                android:text="Sports"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/technology_tab"
+                android:text="Technology"
+                android:padding="6dp"
+                android:layout_margin="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_margin="6dp"
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="">
+
+    </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_main"
         android:layout_width="match_parent"
